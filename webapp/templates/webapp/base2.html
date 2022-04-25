@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+   {% load staticfiles %}
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>{% block title %}FoodApp{% endblock title %}</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css' >
+     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css' >
+     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css' >
+     <link rel='stylesheet' href='https://themify.me/wp-content/themes/themify-v32/themify-icons/themify-icons.css' >
+  <link rel="stylesheet" type="text/css" href="{% static 'webapp/css/bootstrap.min.css'%}">
+
+  <link href="/static/webapp/css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' >
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster+Two:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <!--Animation-->
+  <script src="/static/webapp/js/wow.min.js"></script>
+  <link href="static/webapp/css/animate.css" rel='stylesheet' type='text-center/css' />
+
+  </head>
+  <body>
+
+    
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+   		 <div class="container-fluid">
+   		 	 <div class="navbar-collapse collapse w-100 dual-collapse2 order-1 order-md-0">
+        <ul class="navbar-nav ml-auto text-center">
+            <li class="nav-item active">
+                <a class="nav-link text-white" href="{% url 'index' %}"><font size="3">&nbsp; <strong>Home</strong> </font></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{% url  'mmenu' %}"><font size="3">&nbsp;<strong>Menu </strong></font></a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link text-white" href="{% url  'orderlist' %}"><font size="3">&nbsp;<strong>Orders</strong></font></a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mx-auto my-2 order-0 order-md-1 position-relative">
+        <a class="mx-auto" href="#">
+            <img  src="/static/webapp/images/logofoodattacker.png" style="height: 90px;width: 170px;" alt="Home" class="rounded-circle img-responsive">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2">
+        <ul class="navbar-nav mr-auto text-center">
+          {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link text-white " href="{% url 'logout' %}"><font size="3"> &nbsp;<span aria-hidden="true"></span><strong>LogOut </strong> </font></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="{%url 'rprofile' %}"><font size="3"> &nbsp;<span aria-hidden="true"></span><strong>Profile</strong></font></a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+                <a class="nav-link text-white " href="{% url 'rlogin' %}"><font size="3">&nbsp;<span aria-hidden="true"></span> <strong>LogIn</strong></font></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="{% url 'rregister' %}"><font size="3">&nbsp;<span aria-hidden="true"></span> <strong>Join Us</strong></font></a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+</nav>
+
+{% block body %}
+{% endblock %}
+<br>
+<br>
+<br>
+<br>
+    <button
+        type="button"
+        class="btn btn-secondary btn-floating btn-lg"
+        id="btn-back-to-top"
+        >
+  <i class="fas fa-arrow-up"></i>
+</button>
+    <script>
+        //Get the button
+let mybutton = document.getElementById("btn-back-to-top");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+  if (
+    document.body.scrollTop > 20 ||
+    document.documentElement.scrollTop > 20
+  ) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+// When the user clicks on the button, scroll to the top of the document
+mybutton.addEventListener("click", backToTop);
+
+function backToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+    </script>
+    <style>
+        #btn-back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+}
+    </style>
+    <footer class="new_footer_area bg_color">
+            <div class="new_footer_top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">
+                                <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
+                                <p>Thank you all from foodattacker Company. We will continue to give you the same service. We will not miss you in any way.</p>
+                                <form action="#" class="f_subscribe_two mailchimp" method="post" novalidate="true" _lpchecked="1">
+                                    <input type="text" name="EMAIL" class="form-control memail" placeholder="Email">
+                                    <button class="btn btn_get btn_get_two" type="submit">Subscribe</button>
+                                    <p class="mchimp-errmessage" style="display: none;"></p>
+                                    <p class="mchimp-sucmessage" style="display: none;"></p>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInLeft;">
+                                <h3 class="f-title f_600 t_color f_size_18">Download</h3>
+                                <ul class="list-unstyled f_list">
+                                    <li><a href="https://www.instagram.com/thefoodattacker__/">Company</a></li>
+                                    <li><a href="https://play.google.com/store/search?q=food%20delivery%20apps">Android App</a></li>
+                                    <li><a href="https://www.apple.com/in/app-store/">ios App</a></li>
+                                    <li><a href="">Desktop</a></li>
+                                    <li><a href="">Projects</a></li>
+                                    <li><a href="">My tasks</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInLeft;">
+                                <h3 class="f-title f_600 t_color f_size_18">Help</h3>
+                                <ul class="list-unstyled f_list">
+                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="#">Term &amp; conditions</a></li>
+                                    <li><a href="#">Reporting</a></li>
+                                    <li><a href="#">Documentation</a></li>
+                                    <li><a href="#">Support Policy</a></li>
+                                    <li><a href="#">Privacy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s" style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInLeft;">
+                                <h3 class="f-title f_600 t_color f_size_18">Team Solutions</h3>
+                                <div class="f_social_icon">
+                                    <a href="https://www.instagram.com/thefoodattacker__/" class="fab fa-facebook"></a>
+                                    <a href="https://www.instagram.com/thefoodattacker__/" class="fab fa-twitter"></a>
+                                    <a href="https://www.instagram.com/thefoodattacker__/" class="fab fa-linkedin"></a>
+                                    <a href="https://www.instagram.com/thefoodattacker__/" class="fab fa-pinterest"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer_bg">
+                    <div class="footer_bg_one"></div>
+                    <div class="footer_bg_two"></div>
+                </div>
+            </div>
+            <div class="footer_bottom">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-sm-7">
+                            <p class="mb-0 f_400">© foodattacker 2022 All rights reserved.</p>
+                        </div>
+                        <div class="col-lg-6 col-sm-5 text-right">
+                            <p>Stay Connected With <i class="icon_heart"></i> in <a href="#">foodattacker</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+<script type="text/javascript" src="{%static 'webapp/js/jquery.min.js'%}">
+	</script>
+	<script type="text/javascript" src="{%static 'webapp/js/bootstrap.min.js'%}"></script>
+<script>
+	new WOW().init();
+</script>
+<script src="/static/webapp/js/simpleCart.min.js"> </script>
+<script type="text/javascript" src="/static/webapp/js/move-top.js"></script>
+<script type="text/javascript" src="/static/webapp/js/easing.js"></script>
+</body>
+</html>
